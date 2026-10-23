@@ -1,0 +1,89 @@
+:root{
+  --sky:#bfe9ff; --sky2:#e9f8ff; --grass:#8fd16a; --grass2:#6cbb4b;
+  --ink:#3b2433; --card:#fffaf2; --pink:#ff7fa5;
+}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{
+  font-family:"Fredoka","Baloo 2","Trebuchet MS",system-ui,sans-serif;
+  color:var(--ink);background:var(--grass2);overflow:hidden;
+  -webkit-user-select:none;user-select:none;
+}
+#stage{
+  position:relative;height:100%;max-width:640px;margin:0 auto;overflow:hidden;
+  background:
+    radial-gradient(circle at 82% 14%,#fff3a8 0 34px,transparent 36px),
+    linear-gradient(var(--sky),var(--sky2) 58%,var(--grass) 58%,var(--grass2));
+  padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+}
+.stats{position:absolute;top:12px;left:12px;right:12px;display:flex;gap:10px;z-index:5}
+.stat{flex:1;background:var(--card);border-radius:14px;padding:6px 10px 8px;font-size:.85rem;font-weight:600}
+.bar{height:10px;border-radius:6px;background:#eadfd0;margin-top:3px;overflow:hidden}
+.bar i{display:block;height:100%;width:70%;border-radius:6px;transition:width .4s,background .4s}
+#b-food{background:#ffa94d}#b-clean{background:#4cc3e0}#b-fun{background:#ff7fa5}
+.bar i.low{background:#e5484d}
+
+.say{
+  position:absolute;left:50%;top:88px;transform:translateX(-50%);z-index:6;
+  background:#fff;border-radius:18px;padding:8px 18px;font-size:1.3rem;font-weight:700;
+  box-shadow:0 4px 0 rgba(0,0,0,.12);white-space:nowrap;
+}
+.say::after{content:"";position:absolute;left:50%;bottom:-9px;margin-left:-9px;border:9px solid transparent;border-bottom:0;border-top-color:#fff}
+
+#pig-wrap{position:absolute;left:50%;bottom:22%;width:min(78vw,380px);transform:translateX(-50%);touch-action:none}
+#pig{width:100%;height:auto;display:block;cursor:pointer;overflow:visible}
+.body-g{transform-origin:150px 270px;animation:idle 2.8s ease-in-out infinite}
+@keyframes idle{50%{transform:scale(1.02,.975)}}
+.tail{transform-origin:240px 180px;animation:wag 1.2s ease-in-out infinite}
+@keyframes wag{50%{transform:rotate(14deg)}}
+.eye{transform-box:fill-box;transform-origin:center;animation:blink 4s infinite}
+@keyframes blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
+
+#mud{opacity:0;transition:opacity .5s}
+#mouth-open{opacity:0}
+#pig.chew #mouth{opacity:0}
+#pig.chew #mouth-open{opacity:1;animation:chew .25s infinite alternate}
+@keyframes chew{to{ry:4}}
+#pig.sad #mouth{d:path("M128 176 Q150 160 172 176")}
+#pig.sad .eye{ry:7}
+#pig.jump .body-g{animation:jump .55s ease-out 2}
+@keyframes jump{40%{transform:translateY(-60px) scale(.96,1.05)}}
+#pig.shake .body-g{animation:shake .18s linear infinite}
+@keyframes shake{25%{transform:rotate(-2deg)}75%{transform:rotate(2deg)}}
+#pig.oink .body-g{animation:oink .35s ease-out}
+@keyframes oink{30%{transform:scale(1.08,.94)}}
+
+.tray{
+  position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:center;gap:14px;
+  padding:14px 14px calc(14px + env(safe-area-inset-bottom));
+  background:var(--grass2);border-top:6px solid var(--grass);z-index:5;
+}
+.tool{
+  width:92px;padding:10px 6px 8px;border:0;border-radius:20px;background:var(--card);
+  box-shadow:0 5px 0 rgba(0,0,0,.18);font:inherit;font-weight:700;color:var(--ink);
+  touch-action:none;cursor:grab;display:flex;flex-direction:column;align-items:center;gap:2px;
+}
+.tool svg{width:52px;height:52px}
+.tool:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.18)}
+.tool:focus-visible{outline:4px solid var(--pink);outline-offset:3px}
+
+.ghost{position:fixed;width:84px;height:84px;margin:-42px 0 0 -42px;z-index:50;pointer-events:none;
+  filter:drop-shadow(0 8px 6px rgba(0,0,0,.25));transform:rotate(-8deg)}
+.ghost svg{width:100%;height:100%}
+
+.bubble{position:absolute;border-radius:50%;background:rgba(255,255,255,.75);border:2px solid #8fdcf0;
+  z-index:7;pointer-events:none;animation:rise 1.4s ease-out forwards}
+@keyframes rise{to{transform:translateY(-90px) scale(1.3);opacity:0}}
+
+.cake-on{position:absolute;width:84px;height:84px;z-index:7;pointer-events:none;transform-origin:50% 100%;
+  animation:bites 1.2s steps(3,end) forwards}
+.cake-on svg{width:100%;height:100%}
+@keyframes bites{0%{transform:scale(1)}34%{transform:scale(.7)}67%{transform:scale(.4)}100%{transform:scale(0)}}
+
+.ball-on{position:absolute;width:64px;height:64px;z-index:7;pointer-events:none}
+.ball-on svg{width:100%;height:100%}
+
+@media (prefers-reduced-motion:reduce){
+  .body-g,.tail,.eye{animation:none}
+}
+@media (max-height:640px){#pig-wrap{width:min(60vw,300px);bottom:26%}}

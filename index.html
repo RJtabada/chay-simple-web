@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>My Talking Pig</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main id="stage">
+  <header class="stats">
+    <div class="stat"><span>Food</span><div class="bar"><i id="b-food"></i></div></div>
+    <div class="stat"><span>Clean</span><div class="bar"><i id="b-clean"></i></div></div>
+    <div class="stat"><span>Fun</span><div class="bar"><i id="b-fun"></i></div></div>
+  </header>
+
+  <div id="say" class="say" hidden></div>
+
+  <div id="pig-wrap">
+    <svg id="pig" viewBox="0 0 300 300" aria-label="Your pig. Tap to hear it oink.">
+      <g class="shadow"><ellipse cx="150" cy="276" rx="95" ry="10" fill="#000" opacity=".15"/></g>
+      <g class="body-g">
+        <path class="tail" d="M240 180 q30 -10 24 -34 q-6 -16 -20 -6 q-6 8 6 10" fill="none" stroke="#f08aa6" stroke-width="8" stroke-linecap="round"/>
+        <rect x="75" y="225" width="32" height="48" rx="14" fill="#f08aa6"/>
+        <rect x="193" y="225" width="32" height="48" rx="14" fill="#f08aa6"/>
+        <ellipse cx="150" cy="195" rx="98" ry="72" fill="#ffb3c7"/>
+        <ellipse cx="150" cy="225" rx="62" ry="38" fill="#ffd0dd"/>
+        <rect x="115" y="238" width="32" height="40" rx="14" fill="#ffa0b9"/>
+        <rect x="153" y="238" width="32" height="40" rx="14" fill="#ffa0b9"/>
+        <path d="M82 92 L60 40 Q100 50 120 78Z" fill="#f08aa6"/>
+        <path d="M218 92 L240 40 Q200 50 180 78Z" fill="#f08aa6"/>
+        <ellipse cx="150" cy="125" rx="74" ry="64" fill="#ffb3c7"/>
+        <circle cx="96" cy="146" r="12" fill="#ff8fb0" opacity=".6"/>
+        <circle cx="204" cy="146" r="12" fill="#ff8fb0" opacity=".6"/>
+        <g class="eyes">
+          <ellipse class="eye" cx="118" cy="108" rx="9" ry="12" fill="#2b1b24"/>
+          <ellipse class="eye" cx="182" cy="108" rx="9" ry="12" fill="#2b1b24"/>
+          <circle cx="121" cy="103" r="3" fill="#fff"/>
+          <circle cx="185" cy="103" r="3" fill="#fff"/>
+        </g>
+        <ellipse cx="150" cy="140" rx="34" ry="24" fill="#ff8fb0"/>
+        <ellipse cx="139" cy="138" rx="5" ry="8" fill="#b84a6c"/>
+        <ellipse cx="161" cy="138" rx="5" ry="8" fill="#b84a6c"/>
+        <path id="mouth" d="M128 168 Q150 184 172 168" fill="none" stroke="#7a2f4a" stroke-width="5" stroke-linecap="round"/>
+        <ellipse id="mouth-open" cx="150" cy="174" rx="16" ry="12" fill="#7a2f4a"/>
+        <g id="mud" fill="#8a5a3c">
+          <circle cx="110" cy="90" r="9"/><circle cx="190" cy="82" r="7"/><circle cx="140" cy="62" r="6"/>
+          <circle cx="90" cy="190" r="14"/><circle cx="200" cy="205" r="16"/><circle cx="150" cy="180" r="10"/>
+          <circle cx="120" cy="228" r="9"/><circle cx="215" cy="160" r="8"/>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+  <nav class="tray" aria-label="Pig care tools">
+    <button class="tool" data-tool="soap" aria-label="Soap: drag onto the pig to wash">
+      <svg viewBox="0 0 64 64"><rect x="8" y="22" width="48" height="28" rx="12" fill="#7fd6e8"/><rect x="14" y="26" width="22" height="8" rx="4" fill="#fff" opacity=".6"/><circle cx="48" cy="14" r="6" fill="#d7f4fa" stroke="#7fd6e8" stroke-width="2"/><circle cx="38" cy="10" r="3" fill="#d7f4fa" stroke="#7fd6e8" stroke-width="2"/></svg>
+      <b>Soap</b>
+    </button>
+    <button class="tool" data-tool="cake" aria-label="Cake: drag onto the pig to feed">
+      <svg viewBox="0 0 64 64"><rect x="8" y="30" width="48" height="24" rx="6" fill="#f2b36b"/><path d="M8 34 q6 10 12 0 q6 10 12 0 q6 10 12 0 q6 10 12 0 V30 a6 6 0 0 0 -6 -6 H14 a6 6 0 0 0 -6 6Z" fill="#fff6ee"/><rect x="30" y="12" width="4" height="12" rx="2" fill="#6fb7ff"/><ellipse cx="32" cy="10" rx="3" ry="4" fill="#ffc83d"/></svg>
+      <b>Cake</b>
+    </button>
+    <button class="tool" data-tool="ball" aria-label="Ball: drag onto the pig to play">
+      <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="24" fill="#ff6b5e"/><path d="M8 32h48" stroke="#fff" stroke-width="5"/><path d="M32 8 q-14 24 0 48" fill="none" stroke="#fff" stroke-width="4" opacity=".7"/></svg>
+      <b>Ball</b>
+    </button>
+  </nav>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
